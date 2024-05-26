@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     urls = [
       "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar"
     ];
-    sha256 = "sha256-0psvrjihlv3c9ak61g59dgd2nw93sbhv91qwgx0zbpv5yyi5w6q0";
+    sha256 = "sha256-pE2kcH9QpYjITMOtGun5oyQ+jnstCxdF1QfkhbjAflw=";
   };
 
   dontUnpack = true;
@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
     homepage = "https://portswigger.net/burp/";
     downloadPage = "https://portswigger.net/burp/freedownload";
     platforms = jdk17.meta.platforms;
-    # license = licenses.unfree;
+    license = licenses.unfree;
     hydraPlatforms = [];
     maintainers = with maintainers; [ stoek ];
   };

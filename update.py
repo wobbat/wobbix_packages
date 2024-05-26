@@ -27,15 +27,17 @@ def download_jar(url):
         exit(1)
 
 # Function to run the nix-hash command and get the hash
-def get_nix_hash(filename):
+def get_nix_hash(url):
     try:
-        result = subprocess.run(
-            ['nix-hash', '--flat', '--base32', '--type', 'sha256', filename],
-            check=True, capture_output=True, text=True
-        )
-        hash_value = result.stdout.strip()
-        print(f"nix-hash command executed successfully with output:\n{hash_value}")
-        return hash_value
+            # Construct the command for nix hash
+            command = "nix hash to-sri --type sha256 $(nix-prefetch-url https://portswigger-cdn.net/burp/releases/download?product=pro)"
+            hash_result = subprocess.run(command, shell=True, capture_output=True, text=True)
+                
+            if hash_result.returncode == 0:
+                print(hash_result.stdout)
+                return hash_result.stdout.strip()
+            else:
+                print("Error in calculating hash:", hash_result.stderr)
     except subprocess.CalledProcessError as e:
         print(f"Failed to run the nix-hash command on {filename}: {e}")
         exit(1)
@@ -65,7 +67,7 @@ stdenv.mkDerivation rec {
     urls = [
       "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar"
     ];
-    sha256 = "sha256-{hash_value}";
+    sha256 = "{hash_value}";
   };
 
   dontUnpack = true;
@@ -118,7 +120,7 @@ stdenv.mkDerivation rec {
 # Main script execution
 def main():
     filename = download_jar(JAR_URL)
-    hash_value = get_nix_hash(filename)
+    hash_value = get_nix_hash(JAR_URL)
     version = extract_version(filename)
     create_nix_file(version, hash_value)
     
