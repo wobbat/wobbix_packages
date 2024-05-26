@@ -1,5 +1,5 @@
 
-{ lib, stdenv, fetchurl, jdk19, runtimeShell, unzip, chromium }:
+{ lib, stdenv, fetchurl, jdk21, runtimeShell, unzip, chromium }:
 
 stdenv.mkDerivation rec {
   pname = "burp";
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
     eval "$(${unzip}/bin/unzip -p ${src} chromium.properties)"
     mkdir -p "$HOME/.BurpSuite/burpbrowser/$linux64"
     ln -sf "${chromium}/bin/chromium" "$HOME/.BurpSuite/burpbrowser/$linux64/chrome"
-    exec ${jdk19}/bin/java -jar ${src} "$@"' > $out/bin/burp
+    exec ${jdk21}/bin/java -jar ${src} "$@"' > $out/bin/burp
     chmod +x $out/bin/burp
 
     runHook postInstall
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
     '';
     homepage = "https://portswigger.net/burp/";
     downloadPage = "https://portswigger.net/burp/freedownload";
-    platforms = jdk19.meta.platforms;
+    platforms = jdk21.meta.platforms;
     # license = licenses.unfree;
     hydraPlatforms = [];
     maintainers = with maintainers; [ wobbat ];
