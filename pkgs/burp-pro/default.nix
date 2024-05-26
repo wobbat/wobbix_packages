@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
     homepage = "https://portswigger.net/burp/";
     downloadPage = "https://portswigger.net/burp/freedownload";
     platforms = jdk17.meta.platforms;
-    license = licenses.unfree;
+    # license = licenses.unfree;
     hydraPlatforms = [];
     maintainers = with maintainers; [ stoek ];
   };
