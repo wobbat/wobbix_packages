@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     urls = [
       "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar"
     ];
-    sha256 = "sha256-pE2kcH9QpYjITMOtGun5oyQ+jnstCxdF1QfkhbjAflw=";
+    sha256 = "sha256-ABteovdl3/VBfxyHtOHSI3Er2mupvGCmSmxsCqPMW18=";
   };
 
   dontUnpack = true;
