@@ -1,5 +1,5 @@
 
-{ lib, stdenv, fetchurl, jdk17, runtimeShell, unzip, chromium }:
+{ lib, stdenv, fetchurl, jdk18, runtimeShell, unzip, chromium }:
 
 stdenv.mkDerivation rec {
   pname = "burp";
@@ -41,9 +41,9 @@ stdenv.mkDerivation rec {
     '';
     homepage = "https://portswigger.net/burp/";
     downloadPage = "https://portswigger.net/burp/freedownload";
-    platforms = jdk17.meta.platforms;
+    platforms = jdk18.meta.platforms;
     # license = licenses.unfree;
     hydraPlatforms = [];
-    maintainers = with maintainers; [ stoek ];
+    maintainers = with maintainers; [ wobbat ];
   };
 }
